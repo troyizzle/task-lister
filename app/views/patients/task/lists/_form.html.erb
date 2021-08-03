@@ -26,7 +26,7 @@
     </div>
 
     <% if @patients_task_list.list_id %>
-      <% @patients_task_list.list.items.each do |item| %>
+      <% @patients_task_list.list.items.active.each do |item| %>
         <%= form.fields_for :items, Patients::Task::Item.new do |item_form| %>
           <%= item_form.label :item_id, item.title, value: item.id %>
           <%= item_form.check_box :item_id, {}, item.id, '' %>

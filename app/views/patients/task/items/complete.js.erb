@@ -1,6 +1,8 @@
-$("#<%= dom_id(@patients_task_item) %>").replaceWith("<%= j (render '/patients/task_item') %>");
+$("#<%= dom_id(@patients_task_item) %>").replaceWith("<%= j (render '/patients/task_item', task_item: @patients_task_item) %>");
 
 <% if @patients_task_item.list.all_tasks_complete? %>
   $("#modal-window").find(".modal-content").html("<%= j (render 'all_complete') %>");
   $("#modal-window").modal('toggle')
 <% end %>
+
+
