@@ -19,10 +19,10 @@ class Task::ItemsControllerTest < ActionDispatch::IntegrationTest
   test 'should create task item' do
     assert_difference('Task::Item.count', 1) do
       post task_list_items_path(@task_list),
-           params: { task_item: { list_id: @task_list.id, title: 'foo', body: 'bar', due: 1 } }
+           params: { task_item: { list_id: @task_list.id, title: 'foo2', body: 'bar', due: 1 } }
     end
 
-    assert_redirected_to task_item_path(Task::Item.last)
+    assert_redirected_to task_list_path(@task_list)
   end
 
   test 'should not create task item when invalid' do

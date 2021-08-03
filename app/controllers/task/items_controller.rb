@@ -27,8 +27,6 @@ class Task::ItemsController < ApplicationController
   # POST /task/items or /task/items.json
   def create
     @task_item = Task::Item.new(task_item_params)
-    p task_item_params
-    byebug
 
     respond_to do |format|
       if @task_item.save
