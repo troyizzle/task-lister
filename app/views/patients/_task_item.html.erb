@@ -1,6 +1,5 @@
-<% task_item = task_item || @patient_task_item %>
+<% task_item = task_item || @patients_task_item %>
 <% collapse_target = "collapse_#{task_item.id}" %>
-
 
 <div id=<%= dom_id(task_item) %> class="card" data-controller="patient" data-patient-url-value="<%= item_complete_patient_task_path(task_item.list.patient, task_item) %>">
   <div class="card-header">
