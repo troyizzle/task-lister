@@ -1,0 +1,10 @@
+<h1 class="text-center"><%= @task_list.name %> Items</h1>
+
+<table class="table">
+  <tbody>
+    <%= render partial: '/task/items/task_item', collection: @task_items, as: :task_item %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Item', new_task_list_item_path(@task_list), { remote: true, 'data-bs-toggle': 'modal', 'data-bs-target': '#modal-window' } %>
+<%= render partial: '/layouts/modal' %>

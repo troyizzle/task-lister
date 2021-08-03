@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">Assign Task List</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div
+
+<div data-controller="hello"></div>
+<%= form_with(model: @patients_task_list, url: patient_task_lists_path(@patients_task_list.patient), remote: true, data: { controller: 'hello', hello_patient_value: @patients_task_list.patient_id }) do |form| %>
+  <div class="modal-body">
+  <% if @patients_task_list.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@patients_task_list.errors.count, "error") %> prohibited this patients_task_list from being saved:</h2>
+
+        <ul>
+          <% @patients_task_list.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :patient_id, value: @patients_task_list.patient_id %>
+
+    <div class="field">
+      <%= form.label :list_id, { class: 'form-label' } %>
+      <%= form.select :list_id, options_for_select(Task::List.all.active.order(name: :asc).map { |list| [list.name, list.id] }, @patients_task_list.list_id), { include_blank: true, class: 'form-control' }, { data: { action: 'change->hello#fetchTaskItems' } } %>
+    </div>
+
+    <% if @patients_task_list.list_id %>
+      <% @patients_task_list.list.items.each do |item| %>
+        <%= form.fields_for :items, Patients::Task::Item.new do |item_form| %>
+          <%= item_form.label :item_id, item.title, value: item.id %>
+          <%= item_form.check_box :item_id, {}, item.id, '' %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :start_date %>
+      <%= form.date_field :start_date %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

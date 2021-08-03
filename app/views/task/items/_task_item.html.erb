@@ -1,0 +1,5 @@
+<tr>
+  <td><%= task_item.title %></td>
+  <td><%= link_to 'edit', edit_task_list_item_path(task_item) %></td>
+  <td><%= link_to 'archive', task_list_item_archive_path(task_item.list, task_item) %></td>
+</tr>

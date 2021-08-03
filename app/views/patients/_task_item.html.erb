@@ -1,0 +1,20 @@
+<% task_item = task_item || @patient_task_item %>
+<% collapse_target = "collapse_#{task_item.id}" %>
+
+
+<div id=<%= dom_id(task_item) %> class="card" data-controller="patient" data-patient-url-value="<%= item_complete_patient_task_path(task_item.list.patient, task_item) %>">
+  <div class="card-header">
+    <div class="d-flex justify-content-between">
+      <div><input type="checkbox" <%= task_item.completed? ? 'disabled' : '' %> data-action="click->patient#completeTask"/></div>
+      <div><%= task_item.title %></div>
+      <div class="<%= task_overdue_flag?(task_item) ? 'bg-danger' : ''%>"><%= task_action_date(task_item) %></div>
+      <button class="btn btn-primary" type="button" data-action="click->collapse#collapseTarget" data-toggle="collapse" data-target="#<%= collapse_target %>" aria-expanded="false" aria-controls="collapseExample">
+        Expand
+      </button>
+    </div>
+  </div>
+
+  <div id='<%= collapse_target %>' class="collapse" data-parent="#accordion">
+    <div class="card-body"><%= task_item.body.html_safe %></div>
+  </div>
+</div>

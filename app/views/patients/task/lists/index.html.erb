@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Patients Task Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>List</th>
+      <th>Start date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients_task_lists.each do |patients_task_list| %>
+      <tr>
+        <td><%= patients_task_list.patient_id %></td>
+        <td><%= patients_task_list.list_id %></td>
+        <td><%= patients_task_list.start_date %></td>
+        <td><%= link_to 'Show', patients_task_list %></td>
+        <td><%= link_to 'Edit', edit_patients_task_list_path(patients_task_list) %></td>
+        <td><%= link_to 'Destroy', patients_task_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Patients Task List', new_patients_task_list_path %>

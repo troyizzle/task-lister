@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @patients_task_list.patient_id %>
+</p>
+
+<p>
+  <strong>List:</strong>
+  <%= @patients_task_list.list_id %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @patients_task_list.start_date %>
+</p>
+
+<%= link_to 'Edit', edit_patients_task_list_path(@patients_task_list) %> |
+<%= link_to 'Back', patients_task_lists_path %>

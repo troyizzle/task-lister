@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Patients Task Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients_task_items.each do |patients_task_item| %>
+      <tr>
+        <td><%= link_to 'Show', patients_task_item %></td>
+        <td><%= link_to 'Edit', edit_patients_task_item_path(patients_task_item) %></td>
+        <td><%= link_to 'Destroy', patients_task_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Patients Task Item', new_patients_task_item_path %>

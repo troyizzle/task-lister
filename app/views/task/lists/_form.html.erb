@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">New Task List</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<%= form_with(model: @task_list, local: false) do |form| %>
+  <div class="modal-body">
+    <% if @task_list.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task_list.errors.count, "error") %> prohibited this task_list from being saved:</h2>
+
+
+        <ul>
+          <% @task_list.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name, { class: 'form-label' } %>
+      <%= form.text_field :name, { class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div
+<% end %>

@@ -1,0 +1,9 @@
+<h1 class="text-center">Task list for <%= @patient.full_name %></h1>
+
+<div data-controller="collapse" id="accordion">
+  <% @patient.task_items.order(due_date: :asc).each do |task_item| %>
+    <%= render partial: 'task_item', locals: { task_item: task_item } %>
+  <% end %>
+</div>
+
+<%= render 'layouts/modal' %>
